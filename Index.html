@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Exemplos</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <img id="icone" src="img/icone.svg" alt="">
+        <div id="tudinho">
+            <div class="cart-count"><span id="cart-count"><strong>0</strong></span></div>
+            <a href="Carrinho.html"><img id="carrinho" src="img/carrinho.svg" alt=""></a>
+        </div>
+
+    </header>
+
+    <!-- PARTE1  -->
+    <div class="container">
+        <div class="parte1">
+            <img id="bloco1" src="img/parte1.svg" alt="">
+        </div>
+    </div>
+
+    <!-- PRODUTOS -->
+    <div class="container2">
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/ovelhaROSA.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Ovelha Sofia</li>
+                    <li>30 cm</li>
+                    <li>Fica em pé e sentada</li>
+                    <li>Braços e pernas articulados</li>
+                    <li>Enchimento Hipoalergênico</li>
+                    <li id="valor">R$ 210,00</li>
+                    <button onclick="adicionarAoCarrinho('Ovelha Sofia', 210.00)" data-imagem="img/ovelhaROSA.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/ovelha.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Ovelha Iris</li>
+                    <li>30 cm</li>
+                    <li>Braços e pernas articulados</li>
+                    <li>Enchimento Hipoalergênico</li>
+                    <br>
+                    <li id="valor">R$ 160,00</li>
+                    <button onclick="adicionarAoCarrinho('Ovelha Iris', 160.00)" data-imagem="img/ovelha.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container3">
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/carneiro.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Carneiro Eric</li>
+                    <li>30 cm</li>
+                    <li>Braços e pernas articulados</li>
+                    <li>Enchimento Hipoalergênico</li>
+                    <br>
+                    <li id="valor">R$ 160,00</li>
+                    <button onclick="adicionarAoCarrinho('Carneiro Eric', 160.00)" data-imagem="img/carneiro.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/carneiroAZUL.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Carneiro Davi</li>
+                    <li>30 cm</li>
+                    <li>Fica em pé e sentado</li>
+                    <li>Braços e pernas articulados</li>
+                    <li>Enchimento Hipoalergênico</li>
+                    <li id="valor">R$ 210,00</li>
+                    <button onclick="adicionarAoCarrinho('Carneiro Davi', 210.00)" data-imagem="img/carneiroAZUL.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container4">
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/bonecadepano.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Boneca de pano</li>
+                    <li>43 cm</li>
+                    <li>Totalmente articulada</li>
+                    <li>Confeccionada em tecido de algodão</li>
+                    <li>Enchimento hipoalergênico</li>
+                    <li id="valor">R$ 210,00</li>
+                    <button onclick="adicionarAoCarrinho('Boneca de pano', 210.00)" data-imagem="img/bonecadepano.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ovelha1">
+            <img class="img" id="produto1" src="img/basil.svg" alt="">
+            <div id="ovelha">
+                <ul id="textoovelha">
+                    <li>Basil - Omori</li>
+                    <li>12 cm</li>
+                    <li>Cabelinho de lã verde menta</li>
+                    <li>Troca a roupinha</li>
+                    <li>Enchimento Hipoalergênico</li>
+                    <li id="valor">R$ 63,00</li>
+                    <button onclick="adicionarAoCarrinho('Basil - Omori', 63.00)" data-imagem="img/basil.svg">
+                        Adicionar ao Carrinho
+                    </button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ  -->
+    <footer>
+        <div class="contato">
+            <div class="insta">
+                <img src="img/insta.svg" alt="">
+                <p>@mb.doll</p>
+            </div>
+            <div class="tele">
+                <img src="img/telefone.svg" alt="">
+                <p>(11) 98152-2871</p>
+            </div>
+            <div class="ema">
+                <img src="img/email.svg" alt="">
+                <p>monicaolbo@yahoo.com</p>
+            </div>
+        </div>
+        <p id="doll">&copy; 2024 MB dolls</p>
+        <div class="logof">
+            <img src="img/logofooter.svg" alt="">
+        </div>
+    </footer>
+
+    <!-- POPUP  -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+
+            <img src="img/urso.svg" alt="" id="imagem">
+            <p id="adicionar">Adicionado ao carrinho</p>
+            <div class="botoespop">
+                <button id="close-popup" class="close">Continuar Comprando</button>
+                <a href="carrinho.html"><button id="ir-carrinho">Ir ao Carrinho</button></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="Script.js"></script>
+</body>
+
+</html>
