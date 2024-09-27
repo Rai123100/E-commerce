@@ -23,9 +23,31 @@ function adicionarEstilos() {
     display: flex;
 }
 
+#sobre1 {
+    text-decoration: none;
+    font-size: 4vh;
+    position: absolute;
+    margin-top: 1.9%;
+    margin-left: 73%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #9f8067;
+}
+
+#sobre1:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(2px 2px 5px #a39998);
+    transition: transform 0.3s ease;
+}
+
 #casinha {
     margin-left: 70vw;
     margin-top: 2vh;
+}
+
+#casinha:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(2px 2px 5px #a39998);
+    transition: transform 0.3s ease;
 }
 
 #header1 {
@@ -108,7 +130,7 @@ function adicionarEstilos() {
     justify-content: center;
 }
 
-#menos, #mais {
+.quantidade-btn {
     border: none;
     cursor: pointer;
     background-color: white;
@@ -188,24 +210,65 @@ function adicionarEstilos() {
 /* RODAPÉ  */
 
 footer {
+    margin-top: 7vh;
     background-color: #D6D0C4;
     color: #fff;
     display: flex;
+    position: absolute;
     width: 100%;
     box-shadow: 0 -2px 4px #D6D0C4;
     height: 30vh;
 }
 
-.insta, .tele, .ema {
+.insta {
+    position: absolute;
     display: flex;
     align-items: center;
+    margin-top: 1.5%;
+    margin-left: 2%;
 }
 
-.insta img, .tele img, .ema img {
+.insta img {
     width: 6vh;
 }
 
-.insta p, .tele p, .ema p {
+.tele {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-top: 6%;
+    margin-left: 2%;
+}
+
+.tele img {
+    width: 6vh;
+}
+
+.ema {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-top: 10.5%;
+    margin-left: 2%;
+}
+
+.ema img {
+    width: 6vh;
+}
+
+.insta p {
+    font-size: 2.5vh;
+    margin-left: 1vh;
+    color: #565147;
+}
+
+.tele p {
+    font-size: 2.5vh;
+    margin-left: 1vh;
+    color: #565147;
+}
+
+.ema p {
     font-size: 2.5vh;
     margin-left: 1vh;
     color: #565147;
@@ -243,6 +306,81 @@ footer {
     margin-left: 95vh;
     margin-top: -30vh;
 }
+
+#finalizarcompra{
+    background-color: #FAF2E1;
+    width: 70%;
+    height: 19vh;
+    margin-left: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 5vh;
+    
+}
+
+#total{
+    font-size: 3.5vh;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: -1%;
+    color: #D85C7C;
+    margin-top: 1%;
+}
+
+#cupom{
+    font-size: 3vh;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #9F8067;
+    display: flex;
+    justify-content: space-around;
+}
+
+#escritin{
+    margin-left: 10%;
+    font-size: 4vh;
+}
+
+#caixin{
+    width: 70%;
+    height: 5vh;
+    border-radius: 2vh;
+    border: none;
+    font-size: 3vh;
+    color: #9F8067;
+    margin-top: 2.5vh;
+    margin-right: 3%;
+}
+
+input:focus{
+    outline: #9F8067;
+}
+
+#button3{
+    outline: none;
+    color: #DAA06D;
+    padding: 0.9em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border: 2px dashed #DAA06D;
+    border-radius: 10px;
+    background-color: #EADDCA;
+    box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    transition: .1s ease-in-out, .4s color;
+    font-size: 2vh;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    margin-right: 6vh;
+    width: 21vh;
+}
+
+#button3:active {
+    transform: translateX(0.1em) translateY(0.1em);
+    box-shadow: 0 0 0 4px #EADDCA, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
     `;
 
     const styleTag = document.createElement('style');
@@ -255,12 +393,136 @@ footer {
 document.addEventListener('DOMContentLoaded', () => {
     adicionarEstilos();
     atualizarCarrinho(); // Certifique-se de chamar atualizarCarrinho após adicionar os estilos
+    updateCartCount();  // Atualiza o contador do carrinho
 });
 
-// Adiciona o produto ao carrinho
+
+// Remove um item do carrinho
+function removerDoCarrinho(nome) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    carrinho = carrinho.filter(p => p.nome !== nome);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    atualizarCarrinho(); // Atualiza a página do carrinho
+    updateCartCount(); // Atualiza o contador do carrinho
+}
+
+// Atualiza o carrinho na página
+function atualizarCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const carrinhoContainer = document.getElementById('carrinho');
+    const totalContainer = document.getElementById('total');
+    const finalizarCompraContainer = document.getElementById('finalizarcompra');
+    const imagem = document.getElementById('imgfinal');
+   
+    carrinhoContainer.innerHTML = '';
+    let total = 0;
+
+    if (carrinho.length === 0) {
+        carrinhoContainer.innerHTML = '<p id="vazio">Seu carrinho está vazio.</p>';
+        imagem.innerHTML = '<img id="vazioimg" src="img/vazio.svg">';
+        totalContainer.innerText = '';
+        finalizarCompraContainer.style.display = 'none'; // Esconde a div de finalizar compra
+        return;
+    }
+
+    finalizarCompraContainer.style.display = 'flex'; // Exibe a div de finalizar compra
+
+    carrinho.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.innerHTML =
+        `<div id="arrumar">
+            <div class="organizacao">
+                <div id="produto">
+                    <img src="${item.imagem}" alt="${item.nome}">
+                    <div class="escrito">
+                        <strong><p>${item.nome}</p></strong>
+                        <br>
+                        <strong><p>R$ ${item.preco.toFixed(2)}</p></strong>
+                    </div>
+                    <div id="caixinha">
+                        <strong><p id="nomequan">Quantidade</p></strong>
+                        <br>
+                        <div id="quantidade">
+                            <button class="quantidade-btn" data-index="${index}" data-change="-1">-</button>
+                            <p id="quantia">${item.quantidade}</p>
+                            <button class="quantidade-btn" data-index="${index}" data-change="1">+</button>
+                        </div>
+                    </div>
+                    <p class="escrito" id="precinho"><strong> R$${(item.preco * item.quantidade).toFixed(2)}</strong></p>
+                    <button id="button2" data-nome="${item.nome}">Remover</button>
+                </div>
+            </div>
+        </div>`;
+        carrinhoContainer.appendChild(itemElement);
+        total += item.preco * item.quantidade;
+    });
+
+    totalContainer.innerText = "Total: R$ " + total.toFixed(2);
+
+    // Adiciona eventos aos botões de quantidade e remover
+    document.querySelectorAll('.quantidade-btn').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            const index = parseInt(event.target.dataset.index);
+            const change = parseInt(event.target.dataset.change);
+            alterarQuantidade(index, change);
+        });
+    });
+
+    document.querySelectorAll('#button2').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            const nome = event.target.dataset.nome;
+            removerDoCarrinho(nome);
+        });
+    });
+}
+
+
+// Alterar a quantidade do item
+function alterarQuantidade(index, change) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    carrinho[index].quantidade = Math.max(1, carrinho[index].quantidade + change);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    atualizarCarrinho();
+    updateCartCount(); // Atualiza o contador do carrinho
+}
+
+
+// Função para atualizar o contador de itens no carrinho
+function updateCartCount() {
+    // Obtém o carrinho do localStorage
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    // Calcula o total de itens
+    const totalItems = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+
+    // Atualiza o contador na página
+    document.getElementById('cart-count').textContent = totalItems;
+}
+
+// Chama a função quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', updateCartCount);
+
+// Exemplo de função para adicionar um item ao carrinho (para teste)
 function adicionarAoCarrinho(nome, preco) {
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    
+    // Verifica se o produto já está no carrinho
+    const produtoExistente = carrinho.find(p => p.nome === nome);
+
     let imagem = event.target.dataset.imagem;
+    
+    if (produtoExistente) {
+        produtoExistente.quantidade += 1;
+    } else {
+        carrinho.push({ nome, preco, quantidade: 1, imagem: imagem });
+    }
+
+    // Atualiza o localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza o contador de itens
+    updateCartCount();
 
     // Popup
     const closePopupButton = document.getElementById('close-popup');
@@ -280,84 +542,4 @@ function adicionarAoCarrinho(nome, preco) {
             popup.style.display = 'none';
         }
     });
-
-    // Verifica se o produto já está no carrinho
-    const produtoExistente = carrinho.find(p => p.nome === nome);
-
-    if (produtoExistente) {
-        produtoExistente.quantidade += 1;
-    } else {
-        carrinho.push({ nome, preco, quantidade: 1, imagem: imagem });
-    }
-
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho();
 }
-
-// Remove um item do carrinho
-function removerDoCarrinho(nome) {
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    carrinho = carrinho.filter(p => p.nome !== nome);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho(); // Atualiza a página do carrinho
-}
-
-// Atualiza o carrinho na página
-function atualizarCarrinho() {
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    const carrinhoContainer = document.getElementById('carrinho');
-    const totalContainer = document.getElementById('total');
-    const imagem = document.getElementById('imgfinal');
-    carrinhoContainer.innerHTML = '';
-
-    let total = 0;
-
-    if (carrinho.length === 0) {
-        carrinhoContainer.innerHTML = '<p id="vazio">Seu carrinho está vazio.</p>';
-        imagem.innerHTML = '<img id="vazioimg" src="img/vazio.svg">';
-        totalContainer.innerText = '';
-        return;
-    }
-
-    carrinho.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-        <div id="arrumar">
-            <div class="organizacao">
-                <div id="produto">
-                    <img src="${item.imagem}" alt="${item.nome}">
-                    <div class="escrito">
-                        <strong><p>${item.nome}</p></strong>
-                        <br>
-                        <strong><p>R$ ${item.preco.toFixed(2)}</p></strong>
-                    </div>
-                    <div id="caixinha">
-                        <strong><p id="nomequan">Quantidade</p></strong>
-                        <br>
-                        <div id="quantidade">
-                            <button id="menos" onclick="alterarQuantidade(${index}, -1)">-</button>
-                            <p id="quantia">${item.quantidade}</p>
-                            <button id="mais" onclick="alterarQuantidade(${index}, 1)">+</button>
-                        </div>
-                    </div>
-                    <p class="escrito" id="precinho"><strong> R$${(item.preco * item.quantidade).toFixed(2)}</strong></p>
-                    <button id="button2" onclick="removerDoCarrinho('${item.nome}')">Remover</button>
-                </div>
-            </div>
-        </div>`;
-        carrinhoContainer.appendChild(itemElement);
-        total += item.preco * item.quantidade;
-    });
-
-    totalContainer.innerText = "Total: R$ " + total.toFixed(2);
-}
-
-// Alterar a quantidade do item
-function alterarQuantidade(index, change) {
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    carrinho[index].quantidade = Math.max(1, carrinho[index].quantidade + change);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho();
-}
-

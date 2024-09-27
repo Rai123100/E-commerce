@@ -32,10 +32,13 @@
     width: 15vh;
     /* transition: transform 0.3s ease-in-out; */
     transition: transform 0.3s ease;
-    z-index: 100;
 }
 
-
+#carrinho:hover {
+    filter: drop-shadow(2px 2px 5px rgb(163, 153, 152));
+    /* transform: translateY(-5px); */
+    transform: scale(1.1);
+}
 
 header {
     background-color: #D6D0C4;
@@ -118,6 +121,7 @@ button {
     font-size: 2.6vh;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
+    /* position: absolute; */
 }
 
 button:active {
@@ -227,8 +231,7 @@ footer {
 
 .popup-content {
     background-color: #fee1e1;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -236,7 +239,7 @@ footer {
     width: 80%;
     max-width: 500px;
     position: relative;
-    height: 200px;
+    height: 215px;
 }
 
 .close {
@@ -283,23 +286,25 @@ footer {
     color: #674537;
 }
 
-.cart-count {
-    display: flex;
-    margin-left: 185vh;
-    position: absolute;
-    background-color: #FAF2E1;
-    border: 0.20vh solid #c94063;
-    width: 5vh;
-    height: 5vh;
-    border-radius: 50px;
-    align-items: center;
-    color: #c94063;
-    justify-content: center;
-    font-size: 2.5vh;
-}
-
-#tudinho:hover {
+.car:hover {
     filter: drop-shadow(2px 2px 5px rgb(163, 153, 152));
     /* transform: translateY(-5px); */
     transform: scale(1.1);
+}
+
+#cart-count {
+    position: absolute;
+    display: flex;
+    margin-left: 187vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #FAF2E1;
+    border: 0.4vh solid #C94063;
+    border-radius: 30px;
+    width: 5vh;
+    height: 5vh;
+    color: #C94063;
+    font-size: 2.5vh;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    ;
 }
