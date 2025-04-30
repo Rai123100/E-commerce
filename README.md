@@ -1,6 +1,6 @@
 # Carrinho de Compras
 
-Trabalho realizado para testar as habilidades em Javascript, HTML, CSS dos alunos. Proposto para treinar a lógica e diagramação dos alunos.
+Trabalho realizado para testar as habilidades em Javascript, HTML, CSS dos alunos. Proposto para treinar a lógica e diagramação - Diagrama de Classes UML - dos alunos.
 
 Na instituição Senai, pelo curso "Desenvolvimento de Sistemas Web"
 
